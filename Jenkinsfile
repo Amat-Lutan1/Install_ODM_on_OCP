@@ -2,10 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Initialize') {
+        stage('Initialization') {
             steps {
-                echo 'Initialize'
-                sh 'oc projects'
+                echo 'Initialization'
+                sh '''
+                  #!/bin/bash
+                  oc projects
+                '''
             }
         }
     }
