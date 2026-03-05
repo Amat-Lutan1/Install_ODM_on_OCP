@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Initialize') {
             steps {
-                echo 'Hello World'
+                echo 'Initialize'
+                sh 'oc projects'
             }
         }
     }
