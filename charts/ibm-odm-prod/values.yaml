@@ -47,7 +47,7 @@ customization:
     probes: null
     resources: null
   tolerations: null
-  trustedCertificateList: [ ms-secret1, ms-secret2, ms-secret3 ]
+  trustedCertificateList: [ entra-id-tls ]
   usageMeteringSecretRef: null
   vault: ''
   watcher:
