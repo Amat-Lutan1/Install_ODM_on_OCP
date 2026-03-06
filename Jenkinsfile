@@ -14,9 +14,12 @@ pipeline {
                 sh 'helm repo update'
                 
                 // create secret for Entra ID TLS certificates
-                sh 'oc delete secret entra-id-tls --ignore-not-found'
-                sh 'oc create secret generic entra-id-tls \
-                 --from-file=tls.crt=certificates/entra_id.crt'
+                sh 'oc delete secret entra-id-1-tls --ignore-not-found'
+                sh 'oc create secret generic entra-id-1-tls \
+                 --from-file=tls.crt=certificates/entra_id_1.crt'
+                sh 'oc delete secret entra-id-2-tls --ignore-not-found'
+                sh 'oc create secret generic entra-id-2-tls \
+                 --from-file=tls.crt=certificates/entra_id_2.crt'
                 
                 // create secret for Entra ID Web Security
                 sh 'oc delete secret entra-id-web-auth-secret --ignore-not-found'
