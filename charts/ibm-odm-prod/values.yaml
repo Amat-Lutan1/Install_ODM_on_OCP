@@ -377,7 +377,7 @@ externalDatabase:
 image:
   arch: ''
   pullPolicy: IfNotPresent
-  pullSecrets: []
+  pullSecrets: [ ibm-entitlement-key ]
   repository: 'cp.icr.io/cp/cp4a/odm'
   tag: 9.0.0.1-IF020
   useArch: false
