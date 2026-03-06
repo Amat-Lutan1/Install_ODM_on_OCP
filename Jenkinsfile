@@ -59,13 +59,13 @@ pipeline {
                  --add --name=custom-volume \
                  --type=persistentVolumeClaim \
                  --claim-name=custom-pvc \
-                 --mount-path=''/custom_config'''
+                 --mount-path="/custom_config"'
 
                 sh 'oc set volume deployment/ibm-odm-prod-odm-decisionserverruntime \
                  --add --name=custom-volume \
                  --type=persistentVolumeClaim \
                  --claim-name=custom-pvc \
-                 --mount-path=''/custom_config'''                
+                 --mount-path="/custom_config"'                
             }
         }
     }
