@@ -47,7 +47,7 @@ customization:
     probes: null
     resources: null
   tolerations: null
-  trustedCertificateList: [ ms-secret1, ms-secret2, ms-secret3, ms-secret4 ]
+  trustedCertificateList: [ ms-secret1,ms-secret2,ms-secret3,ms-secret4 ]
   usageMeteringSecretRef: null
   vault: ''
   watcher:
