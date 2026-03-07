@@ -62,9 +62,9 @@ pipeline {
                  --claim-name=custom-pvc \
                  --mount-path=/custom_config'
                 
-                sh """oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
+                sh '''oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
                  -p '{"spec": {"template": {"spec": {"initContainers": [{"volumeMounts": [{"name": "custom-volume", "mountPath": "/custom_config" }]}]}}}}' \
-                 --type=strategic"""
+                 --type=strategic'''
             }
         }
     }
