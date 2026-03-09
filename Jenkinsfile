@@ -16,17 +16,10 @@ pipeline {
                 // create secret for Entra ID TLS certificates
                 sh 'oc delete secret ms-secret --ignore-not-found'
                 sh 'create secret generic ms-secret \
-                 --from-file=certificates/tls.crt=microsoft.crt'
+                 --from-file=tls.crt=certificates/microsoft.crt'
                 sh 'oc delete secret digicert-secret --ignore-not-found'
                 sh 'create secret generic digicert-secret \
                  --from-file=tls.crt=certificates/DigiCertGlobalRootCA.crt.pem'
-                
-                sh 'oc delete secret microsoft-ecc-root-ca-tls --ignore-not-found'
-                sh 'oc create secret generic microsoft-ecc-root-ca-tls \
-                 --from-file=tls.crt=certificates/microsoft-ecc-root-ca.crt'
-                sh 'oc delete secret microsoft-rsa-root-ca-tls --ignore-not-found'
-                sh 'oc create secret generic microsoft-rsa-root-ca-tls \
-                 --from-file=tls.crt=certificates/microsoft-rsa-root-ca.crt' 
                 
                 // create secret for Entra ID Web Security
                 sh 'oc delete secret entra-id-web-auth-secret --ignore-not-found'
