@@ -33,22 +33,18 @@ pipeline {
                 sh 'oc apply -f deployment/custom-config-app.yaml'
                 sh 'oc wait --for=condition=Ready \
                  pod/$(oc get pod -l run=custom-config-app -o jsonpath="{.items[0].metadata.name}") --timeout=300s'
-
-                // get custom config app pod name
-                sh 'CUSTOM_CONFIG_APP_POD_NAME=\
-                 $(oc get pods -o jsonpath="{.items[0].metadata.name}" --selector=run=custom-config-app)'
  
                 // copy custom configuration files for Decision Server Console to custom_config folder
                 sh 'oc cp ./custom_config/application_dsc_custom.xml \
-                 $CUSTOM_CONFIG_APP_POD_NAME:/custom_config -c websphere-liberty'
+                 $(oc get pods -o jsonpath="{.items[0].metadata.name}" --selector=run=custom-config-app):/custom_config -c websphere-liberty'
                 sh 'oc cp ./custom_config/web_dsc_custom.xml \
-                 $CUSTOM_CONFIG_APP_POD_NAME:/custom_config -c websphere-liberty'
+                 $(oc get pods -o jsonpath="{.items[0].metadata.name}" --selector=run=custom-config-app):/custom_config -c websphere-liberty'
                 
                 // copy custom configuration files for Decision Server Runtime to custom_config folder
                 sh 'oc cp ./custom_config/application_dsr_custom.xml \
-                 $CUSTOM_CONFIG_APP_POD_NAME:/custom_config -c websphere-liberty'
+                 $(oc get pods -o jsonpath="{.items[0].metadata.name}" --selector=run=custom-config-app):/custom_config -c websphere-liberty'
                 sh 'oc cp ./custom_config/web_dsr_custom.xml \
-                 $CUSTOM_CONFIG_APP_POD_NAME:/custom_config -c websphere-liberty'
+                 $(oc get pods -o jsonpath="{.items[0].metadata.name}" --selector=run=custom-config-app):/custom_config -c websphere-liberty'
             }
         }
 
