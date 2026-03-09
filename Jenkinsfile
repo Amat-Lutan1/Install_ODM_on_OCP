@@ -17,12 +17,12 @@ pipeline {
                 sh 'oc delete secret ms-secret --ignore-not-found'
                 sh 'oc create secret generic ms-secret \
                  --from-file=tls.crt=certificates/microsoft.crt'
-                sh 'oc delete secret digicertg2-secret --ignore-not-found'
-                sh 'oc create secret generic digicertg2-secret \
+                sh 'oc delete secret digicertrsa-secret --ignore-not-found'
+                sh 'oc create secret generic digicertrsa-secret \
                  --from-file=tls.crt=certificates/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt.pem'                
                 sh 'oc delete secret digicert-secret --ignore-not-found'
                 sh 'oc create secret generic digicert-secret \
-                 --from-file=tls.crt=certificates/DigiCertGlobalRootCA.crt.pem'
+                 --from-file=tls.crt=certificates/DigiCertGlobalRootG2.crt.pem'
                 
                 // create secret for Entra ID Web Security
                 sh 'oc delete secret entra-id-web-auth-secret --ignore-not-found'
