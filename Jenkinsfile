@@ -38,7 +38,7 @@ pipeline {
                 sh '''CUSTOM_CONFIG_APP_POD_NAME=\
                  $(oc get pods -o jsonpath='{.items[0].metadata.name}' --selector=run=custom-config-app)'''
                 echo "The custom config app pod is: $CUSTOM_CONFIG_APP_POD_NAME"
-                sh 'oc cp ./custom_config/application_dsc_custom.xml \
+                sh 'oc rsync ./custom_config/application_dsc_custom.xml \
                  $CUSTOM_CONFIG_APP_POD_NAME:/custom_config/application_dsc_custom.xml'
                 //sh 'oc cp ./custom_config/application_dsr_custom.xml \
                 // $CUSTOM_CONFIG_APP_POD_NAME:/custom_config/application_dsr_custom.xml'
