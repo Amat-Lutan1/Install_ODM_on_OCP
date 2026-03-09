@@ -34,12 +34,17 @@ pipeline {
                 sh 'oc wait --for=condition=Ready pod -l run=custom-config-app --timeout=300s'
 
                 // copy custom configuration files for DSC and DSR to custom_config folder
-                sh '''CUSTOM_CONFIG_APP_POD_NAME=$(oc get pods -o jsonpath='{.items[0].metadata.name}' --selector=run=custom-config-app)'''
-                echo $CUSTOM_CONFIG_APP_POD_NAME
-                sh 'oc cp custom_config/application_dsc_custom.xml $CUSTOM_CONFIG_APP_POD_NAME:/custom_config/application_dsc_custom.xml'
-                sh 'oc cp custom_config/application_dsr_custom.xml $CUSTOM_CONFIG_APP_POD_NAME:/custom_config/application_dsr_custom.xml'
-                sh 'oc cp custom_config/web_dsc_custom.xml $CUSTOM_CONFIG_APP_POD_NAME:/custom_config/web_dsc_custom.xml'
-                sh 'oc cp custom_config/web_dsr_custom.xml $CUSTOM_CONFIG_APP_POD_NAME:/custom_config/web_dsr_custom.xml'
+                def CUSTOM_CONFIG_APP_POD_NAME = \
+                  sh '''$(oc get pods -o jsonpath='{.items[0].metadata.name}' --selector=run=custom-config-app)'''
+                echo ${CUSTOM_CONFIG_APP_POD_NAME}
+                sh 'oc cp custom_config/application_dsc_custom.xml \
+                  ${CUSTOM_CONFIG_APP_POD_NAME}:/custom_config/application_dsc_custom.xml'
+                sh 'oc cp custom_config/application_dsr_custom.xml \
+                  ${CUSTOM_CONFIG_APP_POD_NAME}:/custom_config/application_dsr_custom.xml'
+                sh 'oc cp custom_config/web_dsc_custom.xml \
+                  ${CUSTOM_CONFIG_APP_POD_NAME}:/custom_config/web_dsc_custom.xml'
+                sh 'oc cp custom_config/web_dsr_custom.xml \
+                  ${CUSTOM_CONFIG_APP_POD_NAME}:/custom_config/web_dsr_custom.xml'
             }
         }
 
