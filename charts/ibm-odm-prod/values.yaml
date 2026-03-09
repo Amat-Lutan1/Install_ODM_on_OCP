@@ -83,7 +83,7 @@ decisionCenter:
   downloadUrl: []
   enableAuditLog: false
   enableMutualTLS: false
-  enabled: false
+  enabled: true
   extendRoleMapping: false
   initContainer:
     command: null
@@ -153,7 +153,7 @@ decisionRunner:
   downloadUrl: []
   enableAuditLog: false
   enableMutualTLS: false
-  enabled: false
+  enabled: true
   extendRoleMapping: false
   initContainer:
     command: null
