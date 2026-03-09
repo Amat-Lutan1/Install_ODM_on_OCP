@@ -35,10 +35,6 @@ pipeline {
                  pod/$(oc get pod -l run=custom-config-app -o jsonpath="{.items[0].metadata.name}") --timeout=300s'
 
                 // copy custom configuration files for DSC and DSR to custom_config folder
-                //sh '''CUSTOM_CONFIG_APP_POD_NAME=\
-                // $(oc get pods -o jsonpath='{.items[0].metadata.name}' --selector=run=custom-config-app)'''
-                echo "TESTING"
-                //sh 'oc cp ./custom_config/application_dsc_custom.xml x:/custom_config/application_dsr_custom.xml'
                 sh '''oc cp ./custom_config/application_dsc_custom.xml \
                  $(oc get pods -o jsonpath='{.items[0].metadata.name}' --selector=run=custom-config-app):/custom_config'''
                 //sh 'oc cp ./custom_config/application_dsr_custom.xml \
