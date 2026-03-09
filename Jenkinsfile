@@ -27,6 +27,18 @@ pipeline {
                  --from-file=openIdParameters.properties=security/openIdParameters.properties \
                  --from-file=openIdWebSecurity.xml=security/openIdWebSecurity.xml \
                  --from-file=webSecurity.xml=security/webSecurity.xml'
+
+                // create custom config app for mounting the custom config pvc
+                sh 'oc delete deployment custom-config-app'
+                sh 'oc apply -f deployment/custom-config-app.yaml'
+                sh 'oc wait --for=jsonpath='{.status.replicas}'=1 deployment/custom-config-app'
+
+                // copy custom configuration files for DSC and DSR to custom_config folder
+                sh 'CUSTOM_CONFIG_POD_NAME=$(oc get pods -o jsonpath='{.items[0].metadata.name}' --selector=run=custom-config-app)'
+                sh 'oc cp custom_config/application_dsc_custom.xml $CUSTOM_CONFIG_POD_NAME:/custom_config/application_dsc_custom.xml'
+                sh 'oc cp custom_config/application_dsr_custom.xml $CUSTOM_CONFIG_POD_NAME:/custom_config/application_dsr_custom.xml'
+                sh 'oc cp custom_config/web_dsc_custom.xml $CUSTOM_CONFIG_POD_NAME:/custom_config/web_dsc_custom.xml'
+                sh 'oc cp custom_config/web_dsr_custom.xml $CUSTOM_CONFIG_POD_NAME:/custom_config/web_dsr_custom.xml'
             }
         }
 
