@@ -339,7 +339,7 @@ decisionServerRuntime:
   webConfigRef: null
   xuConfigRef: null
 externalCustomDatabase:
-  datasourceRef: null
+  datasourceRef: customdatasource-secret
   driverPvc: null
 externalDatabase:
   databaseName: 'postgres'
