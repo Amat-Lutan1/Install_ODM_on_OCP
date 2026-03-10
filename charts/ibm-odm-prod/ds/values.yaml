@@ -339,7 +339,7 @@ decisionServerRuntime:
   webConfigRef: null
   xuConfigRef: ds-runtime-xu-configmap
 externalCustomDatabase:
-  datasourceRef: customdatasource-secret
+  datasourceRef: ds-datasource-secret
   driverPvc: null
 externalDatabase:
   databaseName: 'postgres'
