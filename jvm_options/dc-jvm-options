@@ -1,0 +1,6 @@
+-Duser.timezone=Europe/Paris
+-Dcom.ibm.jsse2.overrideDefaultTLS=true
+-Dclient.encoding.override=UTF-8
+-Dfile.encoding=UTF-8
+-Djdk.nativeDigest=false
+--add-exports=java.xml/com.sun.org.apache.xerces.internal.parsers=ALL-UNNAMED
