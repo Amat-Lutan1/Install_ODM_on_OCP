@@ -1,4 +1,4 @@
--Duser.timezone=Europe/Paris
+-Duser.timezone=America/New_York
 -Dcom.ibm.jsse2.overrideDefaultTLS=true
 -Dclient.encoding.override=UTF-8
 -Dfile.encoding=UTF-8
