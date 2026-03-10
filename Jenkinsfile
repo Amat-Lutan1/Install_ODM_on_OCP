@@ -33,7 +33,9 @@ pipeline {
                 sh 'oc create secret generic customdatasource-secret --from-file datasource/datasource-ds.xml'
 
                 // create configmap for jvm options
+                sh 'oc delete secret dsc-jvm-options-configmap --ignore-not-found'
                 sh 'oc create configmap dsc-jvm-options-configmap --from-file jvm_options/dsc-jvm-options'
+                sh 'oc delete secret dsr-jvm-options-configmap --ignore-not-found'
                 sh 'oc create configmap dsr-jvm-options-configmap --from-file jvm_options/dsr-jvm-options'
 
                 // create xu config for Decision Server Runtime
