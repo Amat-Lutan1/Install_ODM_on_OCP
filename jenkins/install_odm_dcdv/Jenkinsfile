@@ -29,14 +29,14 @@ pipeline {
                  --from-file=webSecurity.xml=security/webSecurity.xml'
 
                 // create secret for datasources
-                //sh 'oc delete secret customdatasource-secret --ignore-not-found'
-                //sh 'oc create secret generic customdatasource-secret --from-file datasource/datasource-dc.xml'
+                sh 'oc delete secret dcdv-datasource-secret --ignore-not-found'
+                sh 'oc create secret generic dcdv-datasource-secret --from-file datasource/datasource-dc.xml --from-file datasource/datasource-ds.xml'
 
                 // create configmap for jvm options
-                //sh 'oc delete configmap dc-jvm-options-configmap --ignore-not-found'
-                //sh 'oc create configmap dc-jvm-options-configmap --from-file jvm_options/dc-jvm-options'
-                //sh 'oc delete configmap dr-jvm-options-configmap --ignore-not-found'
-                //sh 'oc create configmap dr-jvm-options-configmap --from-file jvm_options/dr-jvm-options'
+                sh 'oc delete configmap dc-jvm-options-configmap --ignore-not-found'
+                sh 'oc create configmap dc-jvm-options-configmap --from-file jvm_options/dc-jvm-options'
+                sh 'oc delete configmap dr-jvm-options-configmap --ignore-not-found'
+                sh 'oc create configmap dr-jvm-options-configmap --from-file jvm_options/dr-jvm-options'
             }
         }
 
