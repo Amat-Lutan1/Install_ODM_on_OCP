@@ -29,8 +29,8 @@ pipeline {
                  --from-file=webSecurity.xml=security/webSecurity.xml'
 
                 // create secret for datasources
-                sh 'oc delete secret customdatasource-secret --ignore-not-found'
-                sh 'oc create secret generic customdatasource-secret --from-file datasource/datasource-ds.xml'
+                sh 'oc delete secret ds-datasource-secret --ignore-not-found'
+                sh 'oc create secret generic ds-datasource-secret --from-file datasource/datasource-ds.xml'
 
                 // create configmap for jvm options
                 sh 'oc delete configmap dsc-jvm-options-configmap --ignore-not-found'
