@@ -1,5 +1,0 @@
--Duser.timezone=America/New_York
--Dcom.ibm.jsse2.overrideDefaultTLS=true
--Djdk.nativeDigest=false
--Xms1024m
--Xmx1024m

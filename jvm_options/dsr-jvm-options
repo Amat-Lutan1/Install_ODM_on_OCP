@@ -1,6 +1,0 @@
--Duser.timezone=America/New_York
--Dcom.ibm.jsse2.overrideDefaultTLS=true
--Djdk.nativeDigest=false
--Xtune:throughput
--Xms1024m
--Xmx2048m
