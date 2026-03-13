@@ -61,10 +61,25 @@ pipeline {
         stage('Deploy ODM Decision Center & Decision Runner to OCP') {
             steps {
                 echo 'Deploy ODM DC & DV to OCP'
+                script {
+                    // read the Chart.yaml file from the workspace into a variable
+                    def chart = readYaml file: 'charts/ibm-odm-prod/dcdv/Chart.yaml'
+
+                    print "Helm chart name: ${chart.name}"
+                    print "Helm chart version: ${chart.version}"
+                    print "Helm chart app version: ${chart.appVersion}"
+
+                    env.HELM_CHART_VERSION = "${chart.version}"
+                    env.ODM_IMAGE_TAG = "${chart.appVersion}"
+                }
+                
+                // replace ODM image tag with the appVersion from the chart
+                sh 'sed -i.bak "s|ODM_IMAGE_TAG|${ODM_IMAGE_TAG}|g" charts/ibm-odm-prod/dcdv/values.yaml'
+
                 // install ODM DC & DV using helm chart
                 sh 'helm uninstall ibm-odm-dcdv-prod --ignore-not-found'
                 sh 'helm install ibm-odm-dcdv-prod ibm-helm/ibm-odm-prod \
-                 --version 24.1.20 \
+                 --version "${HELM_CHART_VERSION}" \
                  -f charts/ibm-odm-prod/dcdv/values.yaml \
                  --wait \
                  --timeout 30m'
