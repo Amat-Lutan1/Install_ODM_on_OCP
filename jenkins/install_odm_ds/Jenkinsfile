@@ -26,7 +26,8 @@ pipeline {
                 sh 'oc create secret generic web-auth-secret \
                  --from-file=openIdParameters.properties=security/openIdParameters.properties \
                  --from-file=openIdWebSecurity.xml=security/openIdWebSecurity.xml \
-                 --from-file=webSecurity.xml=security/webSecurity.xml'
+                 --from-file=webSecurity.xml=security/webSecurity.xml \
+                 --from-file=OdmOidcProviders.json=security/OdmOidcProviders.json
 
                 // create secret for datasources
                 sh 'oc delete secret ds-datasource-secret --ignore-not-found'
