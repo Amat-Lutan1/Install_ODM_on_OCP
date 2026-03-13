@@ -7,7 +7,7 @@
           "tokenURL": "https://login.microsoftonline.com/8561e204-d946-4a1f-9b5c-59975d5951b4/oauth2/v2.0/token",
           "scope": "openid api://d9ddb0a0-e94a-40d8-9090-1f4c2464cf0e/.default",
           "clientId": "d9ddb0a0-e94a-40d8-9090-1f4c2464cf0e",
-          "clientSecret": "Cr58Q~a.H43BH3CStjwJuV1ANye~EVVhkWpfXbd.",
+          "clientSecret": "AZUREAD_CLIENT_SECRET",
           "logoutURL": "https://login.microsoftonline.com/8561e204-d946-4a1f-9b5c-59975d5951b4/oauth2/v2.0/logout"
       }
     ]
